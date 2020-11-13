@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class movePenguin : MonoBehaviour
 {
@@ -13,12 +14,19 @@ public class movePenguin : MonoBehaviour
     public string controlLocked = "n";
     public int trip = 0;
     public Transform boomObj;
+	
+	[SerializeField]
+	Slider healthBar;
+	
+		
+	float maxHealth = 100;
+	float currHealth = 5;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthBar.value = currHealth;
     }
 
     // Update is called once per frame
@@ -40,12 +48,18 @@ public class movePenguin : MonoBehaviour
             laneNum += 1;
             controlLocked = "y";
         }
+		 if (Input.GetKey("space"))
+        {
+		 SoundManagerScript.PlaySound("jump");	
+         GetComponent<Rigidbody>().velocity = new Vector3(0,2,3);
+         StartCoroutine(stopJump());
+        }
     }
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "obstacle")                                             // ends sequence
         {   
-	    SoundManagerScript.PlaySound("collide");	
+			SoundManagerScript.PlaySound("collide");	
             Destroy(gameObject);
             GM.zVelAdj = 0;
             Instantiate(boomObj, transform.position, boomObj.rotation);                     // penguin explosion
@@ -63,9 +77,13 @@ public class movePenguin : MonoBehaviour
    
         if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
-	    SoundManagerScript.PlaySound("collect");		
-            Destroy(other.gameObject);
+			SoundManagerScript.PlaySound("collect"); 
+			
+			Destroy(other.gameObject);
+			healthBar.value += 5;
+			
             GM.energyTotal += 1;
+			
         }
     }
 
@@ -74,5 +92,13 @@ public class movePenguin : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         hVel = 0;
         controlLocked = "n";
+    }
+	
+	IEnumerator stopJump()
+    {
+        yield return new WaitForSeconds(1);
+		GetComponent<Rigidbody>().velocity = new Vector3(0,-2,3);
+        yield return new WaitForSeconds(0.5f);
+		GetComponent<Rigidbody>().velocity = new Vector3(0,0,3);
     }
 }
