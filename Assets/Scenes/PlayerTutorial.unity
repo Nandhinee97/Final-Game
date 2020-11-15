@@ -376,8 +376,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 398876759}
+  selectedCommands:
+  - {fileID: 398876763}
   variables: []
   description: 
   stepPause: 0
@@ -451,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: To save me from pandemic you have to collect the enegry bar which will
+  storyText: To save me from pandemic you have to collect the energy bar which will
     help me to save my life.
   description: 
   character: {fileID: 0}
