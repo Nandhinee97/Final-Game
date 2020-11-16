@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class movePenguin : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class movePenguin : MonoBehaviour
 	[SerializeField]
 	Slider healthBar;
 	
+
+	[SerializeField]UnityEvent myTrigger;
 		
 	float maxHealth = 100;
 	float currHealth = 5;
@@ -48,7 +51,7 @@ public class movePenguin : MonoBehaviour
             laneNum += 1;
             controlLocked = "y";
         }
-		 if (Input.GetKey("space"))
+	if (Input.GetKey("space"))
         {
 		 SoundManagerScript.PlaySound("jump");	
          GetComponent<Rigidbody>().velocity = new Vector3(0,3,3);
@@ -59,7 +62,8 @@ public class movePenguin : MonoBehaviour
     {
         if (other.gameObject.tag == "obstacle")                                             // ends sequence
         {   
-			SoundManagerScript.PlaySound("collide");	
+	    //SoundManagerScript.PlaySound("collide");	
+	    myTrigger.Invoke();
             Destroy(gameObject);
             GM.zVelAdj = 0;
             Instantiate(boomObj, transform.position, boomObj.rotation);                     // penguin explosion
@@ -77,8 +81,8 @@ public class movePenguin : MonoBehaviour
    
         if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
-			SoundManagerScript.PlaySound("collect"); 
-			
+			//SoundManagerScript.PlaySound("collect"); 
+			myTrigger.Invoke();
 			Destroy(other.gameObject);
 			healthBar.value += 5;
 			
