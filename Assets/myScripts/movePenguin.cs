@@ -82,8 +82,9 @@ public class movePenguin : MonoBehaviour
         if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
 			//SoundManagerScript.PlaySound("collect"); 
-			myTrigger.Invoke();
 			Destroy(other.gameObject);
+			myTrigger.Invoke();
+			
 			healthBar.value += 5;
 			
             GM.energyTotal += 1;
