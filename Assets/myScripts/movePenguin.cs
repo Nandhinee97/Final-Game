@@ -51,7 +51,7 @@ public class movePenguin : MonoBehaviour
 		 if (Input.GetKey("space"))
         {
 		 SoundManagerScript.PlaySound("jump");	
-         GetComponent<Rigidbody>().velocity = new Vector3(0,2,3);
+         GetComponent<Rigidbody>().velocity = new Vector3(0,3,3);
          StartCoroutine(stopJump());
         }
     }
@@ -97,7 +97,7 @@ public class movePenguin : MonoBehaviour
 	IEnumerator stopJump()
     {
         yield return new WaitForSeconds(1);
-		GetComponent<Rigidbody>().velocity = new Vector3(0,-2,3);
+		GetComponent<Rigidbody>().velocity = new Vector3(0,-3,3);
         yield return new WaitForSeconds(0.5f);
 		GetComponent<Rigidbody>().velocity = new Vector3(0,0,3);
     }
