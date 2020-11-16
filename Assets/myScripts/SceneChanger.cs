@@ -8,7 +8,7 @@ public class SceneChanger : MonoBehaviour
     public void StartMainScene(){
 
 
-     SceneManager.LoadSceneAsync("menuscreen");
+     SceneManager.LoadSceneAsync("PlayerTutorial");
 
       }
 
