@@ -22,7 +22,7 @@ public class menu : MonoBehaviour
     void OnGUI()
     {
         GUI.skin = mySkin;
-        if (GUI.Button(new Rect(origin_x, origin_y + 100, buttonWidth, buttonHeight), "Play Again"))
+        if (GUI.Button(new Rect(origin_x, origin_y + 100, buttonWidth, buttonHeight), "Levelup"))
         {  
             SceneManager.LoadScene("Scene1");
         }
