@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/LevelComp_new 2.unity
+    guid: 00c336654b483454ab05a7ce165bf6e8
   m_configObjects: {}

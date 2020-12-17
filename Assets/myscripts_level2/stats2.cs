@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class energy_status : MonoBehaviour
+public class stats2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+     void Start()
     {
         
     }
@@ -15,13 +14,11 @@ public class energy_status : MonoBehaviour
     {
          if (gameObject.name == "energytxt")
         {
-            GetComponent<TextMesh>().text = "Energy Total : " + GameMaster.energyTotall;
+            GetComponent<TextMesh>().text = "Energy Total : " + GMaster.energyTotal;
         }
 		if (gameObject.name == "status")
         {
-            GetComponent<TextMesh>().text = GameMaster.lvlCompStatus;
+            GetComponent<TextMesh>().text = GMaster.lvlCompStatus;
         }
     }
-        
-    
 }

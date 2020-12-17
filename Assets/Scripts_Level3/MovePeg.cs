@@ -53,7 +53,6 @@ public string controlLocked = "n";
 			laneNum += 1;
 			controlLocked = "y";
 		}
-
 	
 		if (Input.GetKey("space"))
 		{
@@ -66,28 +65,32 @@ public string controlLocked = "n";
     {
         if (other.gameObject.tag == "lethal")                                             // ends sequence
         {   
-	    SoundManagerScript.PlaySound("collide");	
+	    	
 	    
             Destroy(gameObject);
+			//SoundManagerScript.PlaySound("collide");
 			GameMaster.lvlCompStatus = "Fail";
                                                                  // move to fail sequence
         }
 	 if (other.gameObject.name == "energy(Clone)")                                             // ends sequence
         {   
-	    SoundManagerScript.PlaySound("collect");	
+	    	
 	    
             Destroy(other.gameObject);
+			//SoundManagerScript.PlaySound("collect");
 			healthBar.value += 2;
-			GameMaster.energyTotal += 1;
+			GMaster.energyTotal += 1;
                                                                  // move to fail sequence
         }
 	
 	if (other.gameObject.name == "Foxprefab(Clone)")                                             // ends sequence
         {   
-	    SoundManagerScript.PlaySound("collide");	
+	    	
 	    
             Destroy(gameObject);
 			GameMaster.lvlCompStatus = "Fail";
+			//SoundManagerScript.PlaySound("collide");
+			//GameMaster.lvlCompStatus = "Fail";
 			
                                                                  // move to fail sequence
         }

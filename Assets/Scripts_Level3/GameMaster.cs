@@ -13,7 +13,7 @@ public class GameMaster : MonoBehaviour
     public float zScenePos = 18;
 	public float waittoload = 0;
     public static string lvlCompStatus = "";
-	public static int energyTotal = 0;
+	public static int energyTotall = 0;
 
 	
     // Start is called before the first frame update
@@ -94,7 +94,7 @@ public class GameMaster : MonoBehaviour
         }
         if (waittoload > 2)
         {
-           SceneManager.LoadScene("LevelComp_new 1");
+           SceneManager.LoadScene("LevelComp_new 2");
         }
         
     }

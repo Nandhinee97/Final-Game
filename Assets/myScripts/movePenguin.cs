@@ -15,6 +15,7 @@ public class movePenguin : MonoBehaviour
     public string controlLocked = "n";
     public int trip = 0;
     public Transform boomObj;
+	public static int energyTotal = 0;
 	
 	[SerializeField]
 	Slider healthBar;
@@ -69,9 +70,25 @@ public class movePenguin : MonoBehaviour
             Instantiate(boomObj, transform.position, boomObj.rotation);                     // penguin explosion
             GM.lvlCompStatus = "Fail";                                                      // move to fail sequence
         }
+		if (other.gameObject.name == "exit")                    // success of level
+        {
+            GM.lvlCompStatus = "Success!";
+            SceneManager.LoadScene("LevelComp");
+        }
+   
+        if (other.gameObject.name == "energy(Clone)")           // collection of energy
+        {
+			SoundManagerScript.PlaySound("collect"); 
+			Destroy(other.gameObject);
+			 
+			myTrigger.Invoke();			
+			healthBar.value += 5;
+            GM.energyTotal += 1;
+			
+        }
     }
 
-    private void OnTriggerEnter(Collider other)                 // for trigger of effects start stop(change elev.) 
+    /* private void OnTriggerEnter(Collider other)                 // for trigger of effects start stop(change elev.) 
     {
         if (other.gameObject.name == "exit")                    // success of level
         {
@@ -82,15 +99,15 @@ public class movePenguin : MonoBehaviour
         if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
 			SoundManagerScript.PlaySound("collect"); 
+			 GM.energyTotal += 1;
 			Destroy(other.gameObject);
-			myTrigger.Invoke();
-			
+			 
+			myTrigger.Invoke();			
 			healthBar.value += 5;
-			
             GM.energyTotal += 1;
 			
         }
-    }
+    } */
 
     IEnumerator stopSlide()
     {
