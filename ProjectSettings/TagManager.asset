@@ -7,11 +7,15 @@ TagManager:
   - obstacle
   - attacker
   - energy
+<<<<<<< HEAD
   - Laser
   - Fire
   - Enemy
   - lethal
   - fox
+=======
+  - enemy
+>>>>>>> 36847a4503c9be51474265a736c6cc186cc4431f
   layers:
   - Default
   - TransparentFX
