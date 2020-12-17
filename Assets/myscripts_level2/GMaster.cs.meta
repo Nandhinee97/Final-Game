@@ -3,7 +3,14 @@ guid: a4583f04937217547a1101ef0fc7e417
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - energyObj: {fileID: 595822554281197819, guid: f777a92e1359c4044963df430385db9c,
+      type: 3}
+  - hurdle2: {fileID: 7488956078349549508, guid: d0241acb7726a934f9e4fe4527a29084,
+      type: 3}
+  - Fox1: {fileID: 8727631459416366833, guid: 9a0d70a2a2167e146b39e38870990ed2, type: 3}
+  - greenbase: {fileID: 4581074685810725766, guid: ab90f2ca047923946bf5c3471a91a736,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

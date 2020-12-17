@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class movepen : MonoBehaviour
 {
@@ -13,23 +16,32 @@ public KeyCode jump;
 public float horizVel = 0;
 public int laneNum = 4;
 public string controlLocked = "n";
-//public static int energyTotal = 0;
+
 
 public float jumpheight=7f;
 private Rigidbody rb;
 
+	[SerializeField]
+	Slider healthBar;
+	
+
+	[SerializeField]UnityEvent myTrigger;
+		
+	float maxHealth = 100;
+	float currHealth = 5;
 
 
     // Start is called before the first frame update
     void Start()
     {
+		healthBar.value = currHealth;
 		rb=  GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3 (horizVel,0,4);
+        GetComponent<Rigidbody>().velocity = new Vector3 (horizVel,0,6);
 
 		if ((Input.GetKeyDown(moveL))&& (controlLocked == "n")&& (laneNum > 1))
 		{
@@ -66,6 +78,7 @@ rb.AddForce(Vector3.up*jumpheight);
 	    //SoundManagerScript.PlaySound("collide");	
 	    
             Destroy(gameObject);
+			GMaster.lvlCompStatus = "Fail";
                                                                  // move to fail sequence
         }
 	 if (other.gameObject.name == "energy(Clone)")                                             // ends sequence
@@ -73,6 +86,8 @@ rb.AddForce(Vector3.up*jumpheight);
 	    //SoundManagerScript.PlaySound("collide");	
 	    
             Destroy(other.gameObject);
+			healthBar.value += 2;
+			GMaster.energyTotal += 1;
                                                                  // move to fail sequence
         }
 	
@@ -81,10 +96,19 @@ rb.AddForce(Vector3.up*jumpheight);
 	    //SoundManagerScript.PlaySound("collide");	
 	    
             Destroy(gameObject);
+			GMaster.lvlCompStatus = "Fail";
                                                                  // move to fail sequence
         }
+		
+	if(other.gameObject.name == "exit")
+		{
+			Destroy(other.gameObject);
+			GMaster.lvlCompStatus = "Success!";
+			SceneManager.LoadScene ("LevelComp");
+		}
     }
-
+	
+	
 
 IEnumerator stopSlide()
 {

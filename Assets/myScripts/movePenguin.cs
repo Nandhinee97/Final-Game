@@ -63,7 +63,7 @@ public class movePenguin : MonoBehaviour
         if (other.gameObject.tag == "obstacle")                                             // ends sequence
         {   
 	    //SoundManagerScript.PlaySound("collide");	
-	    myTrigger.Invoke();
+			myTrigger.Invoke();
             Destroy(gameObject);
             GM.zVelAdj = 0;
             Instantiate(boomObj, transform.position, boomObj.rotation);                     // penguin explosion

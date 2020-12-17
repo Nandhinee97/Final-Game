@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 576150003990701691}
   - component: {fileID: 576150003990701694}
   - component: {fileID: 576150003990701690}
+  - component: {fileID: -3946259418169994838}
   m_Layer: 0
   m_Name: PenguinFBX
   m_TagString: Untagged
@@ -385,6 +386,33 @@ MonoBehaviour:
   controlLocked: n
   trip: 0
   boomObj: {fileID: 6035232473936001359, guid: 193873d5cfb04bd40ae9bb10de6e92a8, type: 3}
+  healthBar: {fileID: 0}
+  myTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-3946259418169994838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576150003990701669}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f6ede28d9d71b47a6e257183500a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveL: 0
+  moveR: 0
+  jump: 0
+  horizVel: 0
+  laneNum: 4
+  controlLocked: n
+  jumpheight: 7
+  healthBar: {fileID: 0}
+  myTrigger:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &576150004331804865
 GameObject:
   m_ObjectHideFlags: 0
