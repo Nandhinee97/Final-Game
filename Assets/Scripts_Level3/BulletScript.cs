@@ -19,7 +19,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "enemy")
+        if (collision.gameObject.name == "Foxprefab(Clone)")
         {
             Destroy(collision.gameObject);
 

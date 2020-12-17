@@ -62,7 +62,7 @@ public class movePenguin : MonoBehaviour
     {
         if (other.gameObject.tag == "obstacle")                                             // ends sequence
         {   
-	    //SoundManagerScript.PlaySound("collide");	
+	        SoundManagerScript.PlaySound("collide");	
 			myTrigger.Invoke();
             Destroy(gameObject);
             GM.zVelAdj = 0;
@@ -81,7 +81,7 @@ public class movePenguin : MonoBehaviour
    
         if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
-			//SoundManagerScript.PlaySound("collect"); 
+			SoundManagerScript.PlaySound("collect"); 
 			Destroy(other.gameObject);
 			myTrigger.Invoke();
 			

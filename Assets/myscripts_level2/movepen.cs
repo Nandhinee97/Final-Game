@@ -11,15 +11,12 @@ public class movepen : MonoBehaviour
 
 public KeyCode moveL;
 public KeyCode moveR;
-public KeyCode jump;
+
 
 public float horizVel = 0;
 public int laneNum = 4;
 public string controlLocked = "n";
 
-
-public float jumpheight=7f;
-private Rigidbody rb;
 
 	[SerializeField]
 	Slider healthBar;
@@ -35,7 +32,6 @@ private Rigidbody rb;
     void Start()
     {
 		healthBar.value = currHealth;
-		rb=  GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -59,23 +55,19 @@ private Rigidbody rb;
 			controlLocked = "y";
 		}
 
-
-	if (Input.GetKeyDown(jump))
-{
-rb.AddForce(Vector3.up*jumpheight);
-}
 	
-	//if (Input.GetKey("space"))
-	  //    {
-       //GetComponent<Rigidbody>().velocity = new Vector3(0,6,5);
-        //StartCoroutine(stopJump());
-        //}
+		if (Input.GetKey("space"))
+		{
+			 SoundManagerScript.PlaySound("jump");	
+			GetComponent<Rigidbody>().velocity = new Vector3(0,6,5);
+			StartCoroutine(stopJump());
+        }
 }
 	void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "lethal")                                             // ends sequence
         {   
-	    //SoundManagerScript.PlaySound("collide");	
+	    SoundManagerScript.PlaySound("collide");	
 	    
             Destroy(gameObject);
 			GMaster.lvlCompStatus = "Fail";
@@ -83,7 +75,7 @@ rb.AddForce(Vector3.up*jumpheight);
         }
 	 if (other.gameObject.name == "energy(Clone)")                                             // ends sequence
         {   
-	    //SoundManagerScript.PlaySound("collide");	
+	    SoundManagerScript.PlaySound("collect");	
 	    
             Destroy(other.gameObject);
 			healthBar.value += 2;
@@ -93,18 +85,19 @@ rb.AddForce(Vector3.up*jumpheight);
 	
 	if (other.gameObject.name == "Foxprefab(Clone)")                                             // ends sequence
         {   
-	    //SoundManagerScript.PlaySound("collide");	
+	    SoundManagerScript.PlaySound("collide");	
 	    
             Destroy(gameObject);
 			GMaster.lvlCompStatus = "Fail";
                                                                  // move to fail sequence
         }
 		
+		
 	if(other.gameObject.name == "exit")
 		{
 			Destroy(other.gameObject);
 			GMaster.lvlCompStatus = "Success!";
-			SceneManager.LoadScene ("LevelComp");
+			SceneManager.LoadScene ("LevelComp_new 1");
 		}
     }
 	
@@ -117,13 +110,13 @@ horizVel = 0;
 controlLocked = "n";
 }
 
-//IEnumerator stopJump()
-  //  {
-    //    yield return new WaitForSeconds(0.5f);
-	//	GetComponent<Rigidbody>().velocity = new Vector3(0,-6,5);
-        //yield return new WaitForSeconds(0.5f);
-	//	GetComponent<Rigidbody>().velocity = new Vector3(0,0,5);
-    //}
+IEnumerator stopJump()
+{
+    yield return new WaitForSeconds(0.5f);
+	GetComponent<Rigidbody>().velocity = new Vector3(0,-6.3f,5);
+	yield return new WaitForSeconds(0.5f);
+	GetComponent<Rigidbody>().velocity = new Vector3(0,0,5);
+ }
 
 }
 

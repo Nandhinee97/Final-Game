@@ -1,85 +1,122 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class MovePeg : MonoBehaviour
 {
 	public KeyCode moveL;
-	public KeyCode moveR;
-	public KeyCode moveJ;
+public KeyCode moveR;
+
+
+public float horizVel = 0;
+public int laneNum = 4;
+public string controlLocked = "n";
+
+
+	[SerializeField]
+	Slider healthBar;
 	
-	public float horizVel = 0;
-	//public int laneNum = 4;
-	public string controlLocked = "n";
-	//public static int energyTotal = 0;
-	
+
+	[SerializeField]UnityEvent myTrigger;
+		
+	float maxHealth = 100;
+	float currHealth = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+		healthBar.value = currHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3 (horizVel,0,4);
-		
-		if ((Input.GetKeyDown(moveL))&& (controlLocked == "n"))
+        GetComponent<Rigidbody>().velocity = new Vector3 (horizVel,0,6);
+
+		if ((Input.GetKeyDown(moveL))&& (controlLocked == "n")&& (laneNum > 1))
 		{
-			horizVel = -4;
+			horizVel = -2.5f;
 			StartCoroutine(stopSlide());
-			//laneNum -= 1;
+			laneNum -= 1;
 			controlLocked = "y";
-			
-		}
-		if ((Input.GetKeyDown(moveR))&& (controlLocked == "n"))
-		{
-			horizVel = 4;
-			StartCoroutine(stopSlide());
-			//laneNum += 1;
-			controlLocked = "y";	
 		}
 		
-		if ((Input.GetKeyDown(moveJ))&& (controlLocked == "n"))
-        {
-		 SoundManagerScript.PlaySound("jump");	
-         GetComponent<Rigidbody>().velocity = new Vector3(0,3,3);
-         StartCoroutine(stopJump());
+		if ((Input.GetKeyDown(moveR))&& (controlLocked == "n")&& (laneNum < 6))
+		{
+			horizVel = 2.5f;
+			StartCoroutine(stopSlide());
+			laneNum += 1;
+			controlLocked = "y";
+		}
+
+	
+		if (Input.GetKey("space"))
+		{
+			SoundManagerScript.PlaySound("jump");	
+			GetComponent<Rigidbody>().velocity = new Vector3(0,6,5);
+			StartCoroutine(stopJump());
         }
-    }
-	
-	void OnCollisionEnter(Collision other)
-	{
-		if(other.gameObject.tag == "obstacle")
-		{
-			Destroy(gameObject);
-		}
-		if(other.gameObject.name == "energy")
-		{
-			Destroy(other.gameObject);
-			GameMaster.energyTotal += 1;
-		}
-		if(other.gameObject.name == "exit")
-		{
-			Destroy(other.gameObject);
-			SceneManager.LoadScene ("LevelComp");
-		}
-	}
-	
-	
-	IEnumerator stopSlide()
-	{
-		yield return new WaitForSeconds(.5f);
-		horizVel = 0;
-		controlLocked = "n";
-	}
-	
-	IEnumerator stopJump()
-    {
-        yield return new WaitForSeconds(1);
-		GetComponent<Rigidbody>().velocity = new Vector3(0,-3,3);
-        yield return new WaitForSeconds(0.5f);
-		GetComponent<Rigidbody>().velocity = new Vector3(0,0,3);
-    }
 }
+	void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "lethal")                                             // ends sequence
+        {   
+	    SoundManagerScript.PlaySound("collide");	
+	    
+            Destroy(gameObject);
+			GameMaster.lvlCompStatus = "Fail";
+                                                                 // move to fail sequence
+        }
+	 if (other.gameObject.name == "energy(Clone)")                                             // ends sequence
+        {   
+	    SoundManagerScript.PlaySound("collect");	
+	    
+            Destroy(other.gameObject);
+			healthBar.value += 2;
+			GameMaster.energyTotal += 1;
+                                                                 // move to fail sequence
+        }
+	
+	if (other.gameObject.name == "Foxprefab(Clone)")                                             // ends sequence
+        {   
+	    SoundManagerScript.PlaySound("collide");	
+	    
+            Destroy(gameObject);
+			GameMaster.lvlCompStatus = "Fail";
+			
+                                                                 // move to fail sequence
+        }
+		
+		
+	if(other.gameObject.name == "exit")
+		{
+			Destroy(other.gameObject);
+			GameMaster.lvlCompStatus = "Success!";
+			SceneManager.LoadScene ("LevelComp_new 1");
+		}
+    }
+	
+	
+
+IEnumerator stopSlide()
+{
+yield return new WaitForSeconds(.5f);
+horizVel = 0;
+controlLocked = "n";
+}
+
+IEnumerator stopJump()
+{
+    yield return new WaitForSeconds(0.5f);
+	GetComponent<Rigidbody>().velocity = new Vector3(0,-6.3f,5);
+	yield return new WaitForSeconds(0.5f);
+	GetComponent<Rigidbody>().velocity = new Vector3(0,0,5);
+ }
+
+}
+

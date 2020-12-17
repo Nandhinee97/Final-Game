@@ -16,6 +16,14 @@ public class stats : MonoBehaviour
         {
             GetComponent<TextMesh>().text = GM.lvlCompStatus;
         }
+		if (gameObject.name == "energytxt")
+        {
+            GetComponent<TextMesh>().text = "Energy Total : " + GMaster.energyTotal;
+        }
+		if (gameObject.name == "status")
+        {
+            GetComponent<TextMesh>().text = GMaster.lvlCompStatus;
+        }
 		
     }
 }

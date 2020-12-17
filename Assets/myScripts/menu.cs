@@ -24,8 +24,9 @@ public class menu : MonoBehaviour
         GUI.skin = mySkin;
         if (GUI.Button(new Rect(origin_x, origin_y + 100, buttonWidth, buttonHeight), "Levelup"))
         {  
-            SceneManager.LoadScene("Scene1");
+            SceneManager.LoadScene("Level2");
         }
+			
         if (GUI.Button(new Rect(origin_x, origin_y + buttonHeight + 140, buttonWidth, buttonHeight), "Quit"))
         {
             UnityEditor.EditorApplication.isPlaying = false;

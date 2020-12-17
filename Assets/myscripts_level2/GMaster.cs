@@ -92,11 +92,13 @@ public class GMaster : MonoBehaviour
         }
 		if (lvlCompStatus == "Fail")
         {
-            waittoload += Time.deltaTime;
+            //SceneManager.LoadScene("LevelComp_new");
+			waittoload += Time.deltaTime;
+			
         }
         if (waittoload > 2)
         {
-           SceneManager.LoadScene("LevelComp");
+           SceneManager.LoadScene("LevelComp_new 1");
         }
         
     }

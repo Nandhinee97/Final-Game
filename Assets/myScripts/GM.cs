@@ -94,7 +94,7 @@ public class GM : MonoBehaviour
         }
         if (waittoload > 2)
         {
-           SceneManager.LoadScene("LevelComp");
+           SceneManager.LoadScene("LevelComp_new");
         }
     }
 }
