@@ -1434,12 +1434,12 @@ PrefabInstance:
     - target: {fileID: 576150003990701689, guid: e3a2f81e5096e9e44ad2b6a66e1c7bec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 576150003990701689, guid: e3a2f81e5096e9e44ad2b6a66e1c7bec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 576150003990701689, guid: e3a2f81e5096e9e44ad2b6a66e1c7bec,
         type: 3}
@@ -2087,6 +2087,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 951824256}
   m_PrefabAsset: {fileID: 0}
+--- !u!111 &1257259464
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257259463}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 04ff6e344b0800245a6b5bf656d4c14e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 04ff6e344b0800245a6b5bf656d4c14e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!95 &1257259467
 Animator:
   serializedVersion: 3
