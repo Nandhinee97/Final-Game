@@ -70,11 +70,12 @@ public class movePenguin : MonoBehaviour
             Instantiate(boomObj, transform.position, boomObj.rotation);                     // penguin explosion
             GM.lvlCompStatus = "Fail";                                                      // move to fail sequence
         }
-		if (other.gameObject.name == "exit")                    // success of level
+		/* if (other.gameObject.name == "exit")                    // success of level
         {
-            GM.lvlCompStatus = "Success!";
-            SceneManager.LoadScene("LevelComp");
-        }
+            Destroy(other.gameObject);
+			GMaster.lvlCompStatus = "Success!";
+			SceneManager.LoadScene ("LevelComp_new");
+        } */
    
         if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
@@ -88,15 +89,15 @@ public class movePenguin : MonoBehaviour
         }
     }
 
-    /* private void OnTriggerEnter(Collider other)                 // for trigger of effects start stop(change elev.) 
+     private void OnTriggerEnter(Collider other)                 // for trigger of effects start stop(change elev.) 
     {
         if (other.gameObject.name == "exit")                    // success of level
         {
             GM.lvlCompStatus = "Success!";
-            SceneManager.LoadScene("LevelComp");
+            SceneManager.LoadScene("LevelComp_new");
         }
    
-        if (other.gameObject.name == "energy(Clone)")           // collection of energy
+        /*if (other.gameObject.name == "energy(Clone)")           // collection of energy
         {
 			SoundManagerScript.PlaySound("collect"); 
 			 GM.energyTotal += 1;
@@ -106,8 +107,8 @@ public class movePenguin : MonoBehaviour
 			healthBar.value += 5;
             GM.energyTotal += 1;
 			
-        }
-    } */
+        }*/
+    }
 
     IEnumerator stopSlide()
     {
